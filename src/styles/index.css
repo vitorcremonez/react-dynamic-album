@@ -3,3 +3,10 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.responsive-text {
+  word-wrap: break-word;
+  width: 100%;
+  table-layout: fixed;
+  display: table;
+}
