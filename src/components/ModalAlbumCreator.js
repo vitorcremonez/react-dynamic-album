@@ -28,7 +28,6 @@ class ModalAlbumCreator extends Component {
             images: this.state.images,
         };
         const recursiveEncoded = $.param(obj);
-        const recursiveDecoded = decodeURIComponent($.param(obj));
 
 
         return (
