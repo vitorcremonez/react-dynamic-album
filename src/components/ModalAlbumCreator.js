@@ -14,10 +14,11 @@ import $ from "jquery";
 class ModalAlbumCreator extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            title: "",
-            description: "",
-            images: [],
+            title: props.album && props.album.title ? props.album.title : "",
+            description: props.album && props.album.description ? props.album.description : "",
+            images: props.album && props.album.images ? props.album.images : [],
         };
     }
 
@@ -29,10 +30,9 @@ class ModalAlbumCreator extends Component {
         };
         const recursiveEncoded = $.param(obj);
 
-
         return (
-            <a href={`http://localhost:3000?${recursiveEncoded}`} target={'_blank'}>
-                {`http://localhost:3000?${recursiveEncoded}`}
+            <a href={`${window.location.origin}?${recursiveEncoded}`} target={'_blank'}>
+                {`${window.location.origin}?${recursiveEncoded}`}
             </a>
         );
     }
@@ -63,6 +63,11 @@ class ModalAlbumCreator extends Component {
                             images[index].url = event.target.value;
                             this.setState({images: images});
                         }}
+                    />
+                    <img
+                        className="rounded mb-2"
+                        src={this.state.images[index].url}
+                        width={200}
                     />
                 </div>
             );
@@ -128,7 +133,6 @@ class ModalAlbumCreator extends Component {
 
 
     render() {
-        console.log(this.state);
         return (
             <Modal isOpen={this.props.isOpen} toggle={() => this.props.toggle()}>
                 <ModalHeader>

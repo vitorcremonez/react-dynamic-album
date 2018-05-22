@@ -7,15 +7,19 @@ class Footer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            modal: false
+            modalNewAlbum: false,
+            modalEditAlbum: false,
         };
-        this.toggle = this.toggle.bind(this);
+        this.toggleNewAlbum = this.toggleNewAlbum.bind(this);
+        this.toggleEditAlbum = this.toggleEditAlbum.bind(this);
     }
 
-    toggle() {
-        this.setState({
-            modal: !this.state.modal
-        });
+    toggleNewAlbum() {
+        this.setState({modalNewAlbum: !this.state.modalNewAlbum});
+    }
+
+    toggleEditAlbum() {
+        this.setState({modalEditAlbum: !this.state.modalEditAlbum});
     }
 
     render() {
@@ -25,13 +29,18 @@ class Footer extends Component {
                     Dynamic Album!
                 </div>
                 <div>
-                    <a href={'#'} onClick={() => this.toggle()}>
+                    <a href={'javascript:void(0)'} onClick={() => this.toggleNewAlbum()}>
                         Create my dynamic album too!
                     </a>
-                    <ModalAlbumCreator isOpen={this.state.modal} toggle={this.toggle}/>
+                    {' or '}
+                    <a href={'javascript:void(0)'} onClick={() => this.toggleEditAlbum()}>
+                        Edit this!
+                    </a>
+                    <ModalAlbumCreator isOpen={this.state.modalNewAlbum} toggle={this.toggleNewAlbum}/>
+                    <ModalAlbumCreator isOpen={this.state.modalEditAlbum} toggle={this.toggleEditAlbum} album={this.props.album}/>
                 </div>
                 <div>
-                    Created by Vitor Cremonez <a href="https://github.com/vitorcremonez/react-dynamic-album">github</a>
+                    Created by Vitor Cremonez <a href="https://github.com/vitorcremonez/react-dynamic-album" target={'_blank'}>github</a>
                 </div>
             </div>
         );
